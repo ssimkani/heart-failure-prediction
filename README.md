@@ -1,1 +1,1 @@
-# heart-disease-ds
+# Heart Failure Prediction Project
