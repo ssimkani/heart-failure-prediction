@@ -3,6 +3,8 @@ import pandas as pd
 import numpy as np
 import joblib
 import json
+import utils.predictions as pred
+import utils.risk_level as rl
 
 # Streamlit UI
 def main():
@@ -65,7 +67,7 @@ def main():
     exercise_induced_angina = df_encodings["ExerciseAngina"].get(exercise_induced_angina)
 
     # Oldpeak
-    oldpeak = st.slider("Oldpeak", 0.0, 10.0, 2.0)
+    oldpeak = st.slider("Oldpeak (mm)", 0.0, 10.0, 2.0)
 
     # ST Slope
     st_slope = st.selectbox(
@@ -75,7 +77,6 @@ def main():
         index=None,
     )
     st_slope = df_encodings["ST_Slope"].get(st_slope)
-
 
     # Make sure all fields are filled
     all_fields_filled = (
@@ -99,6 +100,12 @@ def main():
                 "Oldpeak": [oldpeak],
                 "ST_Slope": [st_slope]
             })
+
+            # Make prediction
+            prediction = pred.predict(model, input_data)
+            risk_level = rl.risk_level(prediction)
+            st.success(f"Predicted Risk: {(prediction * 100):.2f}%")
+            st.success(risk_level)
 
 if __name__ == "__main__":
     main()
