@@ -35,6 +35,7 @@ def main():
     age = st.slider("Age", 0, 120, 30)
 
     sex = st.selectbox("Sex", ["Female", "Male"], placeholder="Select Sex", index=None)
+    sex = df_encodings["Sex"].get(sex)
 
     # Chest Pain Type
     chest_pain_type = st.selectbox(
@@ -43,6 +44,7 @@ def main():
         placeholder="Select Chest Pain Type",
         index=None,
     )
+    chest_pain_type = df_encodings["ChestPainType"].get(chest_pain_type)
 
     # Resting Blood Pressure
     resting_blood_pressure = st.slider("Resting Blood Pressure (mmHG)", 0, 200, 120)
@@ -56,10 +58,11 @@ def main():
     # Exercise Induced Angina
     exercise_induced_angina = st.selectbox(
         "Exercise Induced Angina",
-        ["Yes", "No"],
+        ["No", "Yes"],
         placeholder="Exercise Induced Angina?",
         index=None,
     )
+    exercise_induced_angina = df_encodings["ExerciseAngina"].get(exercise_induced_angina)
 
     # Oldpeak
     oldpeak = st.slider("Oldpeak", 0.0, 10.0, 2.0)
@@ -71,6 +74,8 @@ def main():
         placeholder="Select ST Slope",
         index=None,
     )
+    st_slope = df_encodings["ST_Slope"].get(st_slope)
+
 
     # Make sure all fields are filled
     all_fields_filled = (
@@ -82,19 +87,18 @@ def main():
 
     if all_fields_filled:
         if st.button("Predict Heart Disease Risk"):
-            # Make prediction
-            pass
+            # Create a DataFrame for the input data
+            input_data = pd.DataFrame({
+                "Age": [age],
+                "Sex": [sex],
+                "ChestPainType": [chest_pain_type],
+                "RestingBP": [resting_blood_pressure],
+                "Cholesterol": [serum_cholesterol],
+                "MaxHR": [max_heart_rate],
+                "ExerciseAngina": [exercise_induced_angina],
+                "Oldpeak": [oldpeak],
+                "ST_Slope": [st_slope]
+            })
 
 if __name__ == "__main__":
     main()
-
-
-def encode(decoded_input, df_encodings):
-    """
-    Encode the input data using the provided encodings.
-    """
-    encoded_data = {}
-    for column, encoding in df_encodings.items():
-        if column in input_data:
-            encoded_data[column] = encoding.get(input_data[column], input_data[column])
-    return encoded_data
