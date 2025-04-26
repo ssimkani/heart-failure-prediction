@@ -34,13 +34,12 @@ def main():
     # Age
     age = st.slider("Age", 0, 120, 30)
 
-    # Sex
-    sex = st.selectbox("Sex", ["Male", "Female"], placeholder="Select Sex", index=None)
+    sex = st.selectbox("Sex", ["Female", "Male"], placeholder="Select Sex", index=None)
 
     # Chest Pain Type
     chest_pain_type = st.selectbox(
         "Chest Pain Type",
-        ["Typical Angina", "Atypical Angina", "Non-Anginal Pain", "Asymptomatic"],
+        ["Atypical Angina", "Non-Anginal Pain", "Asymptomatic", "Typical Angina"],
         placeholder="Select Chest Pain Type",
         index=None,
     )
@@ -88,3 +87,14 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+
+def encode(decoded_input, df_encodings):
+    """
+    Encode the input data using the provided encodings.
+    """
+    encoded_data = {}
+    for column, encoding in df_encodings.items():
+        if column in input_data:
+            encoded_data[column] = encoding.get(input_data[column], input_data[column])
+    return encoded_data

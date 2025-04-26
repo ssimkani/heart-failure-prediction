@@ -1,22 +1,17 @@
 {
     "Sex": {
-        "M": 1,
-        "F": 0
+        "Male": 1,
+        "Female": 0
     },
     "ChestPainType": {
-        "ATA": 0,
-        "NAP": 1,
-        "ASY": 2,
-        "TA": 3
-    },
-    "RestingECG": {
-        "Normal": 0,
-        "ST": 1,
-        "LVH": 2
+        "Atypical Angina": 0,
+        "Non-Anginal Pain": 1,
+        "Asymptomatic": 2,
+        "Typical Angina": 3
     },
     "ExerciseAngina": {
-        "N": 0,
-        "Y": 1
+        "No": 0,
+        "Yes": 1
     },
     "ST_Slope": {
         "Up": 0,
