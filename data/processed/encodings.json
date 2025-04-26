@@ -1,0 +1,26 @@
+{
+    "Sex": {
+        "M": 1,
+        "F": 0
+    },
+    "ChestPainType": {
+        "ATA": 0,
+        "NAP": 1,
+        "ASY": 2,
+        "TA": 3
+    },
+    "RestingECG": {
+        "Normal": 0,
+        "ST": 1,
+        "LVH": 2
+    },
+    "ExerciseAngina": {
+        "N": 0,
+        "Y": 1
+    },
+    "ST_Slope": {
+        "Up": 0,
+        "Flat": 1,
+        "Down": 2
+    }
+}
