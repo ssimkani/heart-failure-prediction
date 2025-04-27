@@ -1,1 +1,1 @@
-# Heart Failure Prediction Project
+# Heart Disease App
